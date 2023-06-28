@@ -1,0 +1,20 @@
+<ion-content>
+
+  <app-search-bar (filterOutput)="filterImages($event)"></app-search-bar>
+
+  <div class="scroll-container container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" size-md="4" size-lg="3" *ngFor="let photo of filteredPhotos">
+          <app-image-card [url]="'https://picsum.photos/id/' + photo.id + '/500/500.jpg'" [text]="photo.text"></app-image-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  
+  <ion-infinite-scroll (ionInfinite)="onScroll($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  
+</ion-content>
