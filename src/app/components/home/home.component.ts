@@ -48,7 +48,7 @@ export class HomeComponent {
 
   //Filtrado de imagenes
   filterImages(ev: any){
-    this.filteredPhotos = this.randomPhotos;
+    this.filteredPhotos = this.randomPhotos.slice(0, this.photoPerPage*this.page);
     if(ev !== ''){
       this.filteredPhotos = this.filteredPhotos.filter(photo => (photo.text.includes(ev) || photo.id.toString().includes(ev)));
     }

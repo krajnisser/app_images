@@ -46,7 +46,7 @@ describe('HomeComponent', () => {
     expect(component.filteredPhotos[0].text).toContain(ev);
   });
 
-  it('should load more images on scroll', () => {
+  it('should load after scroll', () => {
     component.filteredPhotos = [
       { id: 1, photo: 'photo1.jpg', text: 'Lorem ipsum dolor sit amet' },
       { id: 2, photo: 'photo2.jpg', text: 'Consectetur adipiscing elit' }

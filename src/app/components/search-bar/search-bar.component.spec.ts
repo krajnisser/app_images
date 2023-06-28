@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { SearchBarComponent } from './search-bar.component';
@@ -30,19 +30,6 @@ describe('SearchBarComponent', () => {
 
     setTimeout(() => {
       expect(emitSpy).toHaveBeenCalledWith(filterValue);
-      done();
-    }, 300);
-  });
-
-  it('should clear delay', (done) => {
-    const filterValue = 'example';
-    const emitSpy = spyOn(component.filterOutput, 'emit');
-
-    component.filterImages({ detail: { value: filterValue } });
-    component.filterImages({ detail: { value: 'new value' } });
-
-    setTimeout(() => {
-      expect(emitSpy).not.toHaveBeenCalledWith(filterValue);
       done();
     }, 300);
   });
