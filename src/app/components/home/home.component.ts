@@ -12,6 +12,7 @@ export class HomeComponent {
   URL_BASE = `https://picsum.photos/id/`;
   randomPhotos: Image[] = [];
   filteredPhotos: Image[] = [];
+  page = 1;
 
   //Configuración
   width = 500;
@@ -27,11 +28,12 @@ export class HomeComponent {
 
   async ngOnInit() {
     this.loadImages();
+    this.filteredPhotos = this.randomPhotos.slice(0, this.photoPerPage * this.page);
   }
 
   //Se van cargando las fotos que se mostraran en pantalla
   loadImages(){
-    for (let i = 0; i < this.photoPerPage; i++) {
+    for (let i = 0; i < this.iterations; i++) {
       const randomNumber = Math.floor(Math.random() * this.numberOfRandoms); //Generamos un id random para la imagen
       const lorem: String = new LoremIpsum().generateWords(this.loremIpsumLength); //Generamos un texto random
       this.randomPhotos.push(
@@ -41,7 +43,6 @@ export class HomeComponent {
           text: lorem
         }
       );
-      this.filteredPhotos = this.randomPhotos;
     }
   }
 
@@ -58,8 +59,9 @@ export class HomeComponent {
     setTimeout(() => {
       (ev as InfiniteScrollCustomEvent).target.complete();
     }, 500);
-    if(this.randomPhotos.length < this.iterations){
-      this.loadImages();
+    if(this.filteredPhotos.length < this.iterations){
+      this.page++;
+      this.filteredPhotos = this.randomPhotos.slice(0, this.photoPerPage*this.page);
     }
   }
 

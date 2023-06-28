@@ -29,7 +29,7 @@ describe('HomeComponent', () => {
   it('loadImages', () => {
     component.loadImages();
 
-    expect(component.randomPhotos.length).toBe(component.photoPerPage * 2); //Hay que contar con la carga inicial
+    expect(component.randomPhotos.length).toBe(component.iterations * 2); //Hay que contar con la carga inicial
   });
 
   it('filterImages', () => {
@@ -47,11 +47,21 @@ describe('HomeComponent', () => {
   });
 
   it('should load more images on scroll', () => {
-    component.iterations = 5;
-    component.randomPhotos = [{ id: 1, photo: 'photo1.jpg', text: 'Lorem ipsum' }];
+    component.filteredPhotos = [
+      { id: 1, photo: 'photo1.jpg', text: 'Lorem ipsum dolor sit amet' },
+      { id: 2, photo: 'photo2.jpg', text: 'Consectetur adipiscing elit' }
+    ];
+    component.page = 1;
+    component.photoPerPage = 2;
+    component.iterations = 4;
+    component.randomPhotos = [
+      { id: 3, photo: 'photo3.jpg', text: 'Sed do eiusmod tempor incididunt' },
+      { id: 4, photo: 'photo4.jpg', text: 'Ut labore et dolore magna aliqua' }
+    ];
 
-    component.onScroll({ target: { complete: () => {} } });
+    component.onScroll({} as any);
 
-    expect(component.randomPhotos.length).toBeGreaterThan(1);
+    expect(component.page).toEqual(2);
+    expect(component.filteredPhotos.length).toEqual(2);
   });
 });
