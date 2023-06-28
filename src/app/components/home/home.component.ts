@@ -19,8 +19,6 @@ export class HomeComponent {
   height = 500;
   iterations = 4000;
   numberOfRandoms = 1000;
-  loremIpsumMinLength = 5;
-  loremIpsumMaxLength = 20;
   photoPerPage = 12;
   loremIpsumLength = 10;
 
