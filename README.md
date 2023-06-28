@@ -1,4 +1,5 @@
 Hacer "npm install" antes de ejecutar "ionic serve".
+Para test unitarios, ejecutar "ng test".
 
 La aplicación muestra, desde la url "https://i.picsum.photos/id/id_incremental/500/500", 4000 fotos (con posibilidad de cambiar el número de fotos) respecto a un id generado de manera aleatoria,
 y un texto en cada foto generado también de manera aleatoria.
